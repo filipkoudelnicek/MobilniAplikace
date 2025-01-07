@@ -1,0 +1,7 @@
+{
+  "name": "MobilniAplikace",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
