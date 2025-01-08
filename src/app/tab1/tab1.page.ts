@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   imports: [IonicModule, CommonModule, FormsModule],
 })
 export class Tab1Page {
-  movies = [
+  originalMovies = [
     {
       title: 'Inception',
       overview: 'A skilled thief is given a chance at redemption if he can successfully perform an inception.',
@@ -27,17 +27,25 @@ export class Tab1Page {
     },
   ];
 
+  movies = [...this.originalMovies]; // Kopie původního seznamu
   favorites: any[] = [];
 
   constructor(private appStorage: AppStorageService) {}
 
   async ionViewWillEnter() {
     this.favorites = (await this.appStorage.get('favorites')) || [];
+    this.movies = [...this.originalMovies]; // Resetování seznamu při zobrazení tabu
   }
 
   search(event: any) {
     const query = event.target.value.toLowerCase();
-    this.movies = this.movies.filter(movie => movie.title.toLowerCase().includes(query));
+    if (query.trim() === '') {
+      this.movies = [...this.originalMovies]; // Obnovit seznam, pokud je hledání prázdné
+    } else {
+      this.movies = this.originalMovies.filter(movie =>
+        movie.title.toLowerCase().includes(query)
+      );
+    }
   }
 
   isFavorite(movie: any): boolean {
