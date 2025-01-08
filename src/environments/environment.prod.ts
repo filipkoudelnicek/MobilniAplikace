@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  tmdbApiKey: 'VAŠE_API_KLÍČE',
 };
