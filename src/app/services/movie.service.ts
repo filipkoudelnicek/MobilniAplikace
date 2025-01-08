@@ -19,4 +19,13 @@ export class MovieService {
       },
     });
   }
+
+  getMovieDetails(imdbID: string) {
+    return this.http.get(`${this.apiUrl}`, {
+      params: {
+        apikey: environment.omdbApiKey,
+        i: imdbID, // Vyhledáváme pomocí ID
+      },
+    });
+  }
 }

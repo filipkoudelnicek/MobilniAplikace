@@ -13,7 +13,7 @@
 
   <ion-searchbar placeholder="Vyhledávej filmy..." (ionInput)="search($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let movie of movies">
+    <ion-item *ngFor="let movie of movies" [routerLink]="['/movie-detail', movie.imdbID]">
       <ion-thumbnail slot="start">
         <img [src]="movie.Poster !== 'N/A' ? movie.Poster : 'assets/no-poster.png'" alt="{{ movie.Title }}" />
       </ion-thumbnail>
@@ -21,9 +21,16 @@
         <h2>{{ movie.Title }}</h2>
         <p>Rok: {{ movie.Year }}</p>
       </ion-label>
-      <ion-button fill="clear" (click)="toggleFavorite(movie)">
+      <ion-button
+        fill="clear"
+        slot="end"
+        (click)="$event.stopPropagation(); toggleFavorite(movie)"
+        [routerLink]="null"
+      >
         <ion-icon [name]="isFavorite(movie) ? 'heart' : 'heart-outline'"></ion-icon>
       </ion-button>
     </ion-item>
+    
+    
   </ion-list>
 </ion-content>

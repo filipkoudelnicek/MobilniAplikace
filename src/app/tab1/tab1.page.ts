@@ -4,17 +4,18 @@ import { FavoriteService } from '../services/favorite.service';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: './tab1.page.html',
   styleUrls: ['./tab1.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule],
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule],
 })
 export class Tab1Page {
-  movies: any[] = []; // Filmy z API
-  favorites: any[] = []; // Oblíbené filmy
+  movies: any[] = [];
+  favorites: any[] = [];
 
   constructor(
     private movieService: MovieService,
@@ -22,7 +23,6 @@ export class Tab1Page {
   ) {}
 
   async ionViewWillEnter() {
-    // Načtení oblíbených filmů
     this.favorites = await this.favoriteService.getFavorites();
   }
 

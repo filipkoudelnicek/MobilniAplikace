@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/search"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ movie?.Title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <!-- Sloupec s obrázkem -->
+        <ion-col size="4" class="image-column">
+          <img
+            [src]="movie?.Poster !== 'N/A' ? movie?.Poster : 'assets/no-poster.png'"
+            alt="{{ movie?.Title }}"
+          />
+        </ion-col>
+
+        <!-- Sloupec s textem -->
+        <ion-col size="8" class="text-column">
+          <ion-card-header>
+            <ion-card-title>{{ movie?.Title }}</ion-card-title>
+            <ion-card-subtitle>Rok: {{ movie?.Year }} | Žánr: {{ movie?.Genre }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <p><strong>Popis:</strong> {{ movie?.Plot }}</p>
+            <p><strong>Režisér:</strong> {{ movie?.Director }}</p>
+            <p><strong>Hodnocení:</strong> {{ movie?.imdbRating }} / 10</p>
+          </ion-card-content>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>
