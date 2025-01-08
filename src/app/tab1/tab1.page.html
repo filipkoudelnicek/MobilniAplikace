@@ -18,6 +18,9 @@
         <h2>{{ movie.title }}</h2>
         <p>{{ movie.overview }}</p>
       </ion-label>
+      <ion-button fill="clear" (click)="toggleFavorite(movie)">
+        <ion-icon [name]="isFavorite(movie) ? 'heart' : 'heart-outline'"></ion-icon>
+      </ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
