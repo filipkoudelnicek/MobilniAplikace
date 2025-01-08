@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  tmdbApiKey: 'VAŠE_API_KLÍČE',
+  omdbApiKey: '52e97fae',
 };
