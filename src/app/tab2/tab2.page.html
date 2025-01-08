@@ -13,9 +13,12 @@
 
   <ion-list>
     <ion-item *ngFor="let favorite of favorites">
+      <ion-thumbnail slot="start">
+        <img [src]="favorite.Poster !== 'N/A' ? favorite.Poster : 'assets/no-poster.png'" alt="{{ favorite.Title }}" />
+      </ion-thumbnail>
       <ion-label>
-        <h2>{{ favorite.title }}</h2>
-        <p>{{ favorite.overview }}</p>
+        <h2>{{ favorite.Title }}</h2>
+        <p>{{ favorite.Year }}</p>
       </ion-label>
       <ion-button fill="clear" color="danger" (click)="removeFromFavorites(favorite)">
         <ion-icon name="trash-outline"></ion-icon>

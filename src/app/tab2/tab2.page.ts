@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppStorageService } from '../app-storage.service';
+import { FavoriteService } from '../services/favorite.service';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,21 +12,18 @@ import { FormsModule } from '@angular/forms';
   imports: [IonicModule, CommonModule, FormsModule],
 })
 export class Tab2Page {
-  favorites: any[] = [];
+  favorites: any[] = []; // Oblíbené filmy
 
-  constructor(private appStorage: AppStorageService) {}
+  constructor(private favoriteService: FavoriteService) {}
 
   async ionViewWillEnter() {
-    // Zajištění aktualizace seznamu při každém zobrazení tabu
-    this.loadFavorites();
-  }
-
-  async loadFavorites() {
-    this.favorites = (await this.appStorage.get('favorites')) || [];
+    // Načtení oblíbených filmů
+    this.favorites = await this.favoriteService.getFavorites();
   }
 
   async removeFromFavorites(movie: any) {
-    this.favorites = this.favorites.filter(fav => fav.title !== movie.title);
-    await this.appStorage.set('favorites', this.favorites);
+    // Odstranění filmu z oblíbených
+    this.favorites = this.favorites.filter(fav => fav.imdbID !== movie.imdbID);
+    await this.favoriteService.saveFavorites(this.favorites);
   }
 }
