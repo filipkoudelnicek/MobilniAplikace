@@ -1,17 +1,23 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title>Vyhledávání</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Vyhledávání</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-searchbar placeholder="Vyhledávej filmy..." (ionInput)="search($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let movie of movies">
+      <ion-label>
+        <h2>{{ movie.title }}</h2>
+        <p>{{ movie.overview }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
