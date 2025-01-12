@@ -1,5 +1,8 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
+import { SplashScreen } from '@capacitor/splash-screen';
+
+SplashScreen.hide();
 
 // Inicializace tmavého/světlého režimu podle uložené hodnoty
 function initializeDarkMode() {
