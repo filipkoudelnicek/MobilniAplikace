@@ -17,7 +17,6 @@ export class Tab3Page {
   ngOnInit() {
     // Načtení uložené volby z Local Storage
     const savedTheme = localStorage.getItem('dark-mode');
-    console.log('Načtená hodnota z Local Storage:', savedTheme);
 
     // Nastavení přepínače podle uložené hodnoty
     this.paletteToggle = savedTheme === 'true';
@@ -29,11 +28,9 @@ export class Tab3Page {
   // Uložení volby při změně přepínače
   toggleChange(ev: any) {
     this.paletteToggle = ev.detail.checked;
-    console.log('Přepínač změněn na:', this.paletteToggle);
 
     // Uložení hodnoty do Local Storage
     localStorage.setItem('dark-mode', this.paletteToggle.toString());
-    console.log('Uloženo do Local Storage:', localStorage.getItem('dark-mode'));
 
     // Přepnutí režimu
     this.toggleDarkPalette(this.paletteToggle);
