@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config = {
   appId: 'io.ionic.starter',
-  appName: 'Movie Explorer',
+  appName: 'Filmovník',
   webDir: 'www',
   bundledWebRuntime: false,
   plugins: {
