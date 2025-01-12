@@ -15,26 +15,32 @@ export class Tab3Page {
   paletteToggle = false;
 
   ngOnInit() {
-    // Use matchMedia to check the user preference
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    // Initialize the dark palette based on the initial
-    // value of the prefers-color-scheme media query
-    this.initializeDarkPalette(prefersDark.matches);
-    // Listen for changes to the prefers-color-scheme media query
-    prefersDark.addEventListener('change', (mediaQuery) => this.initializeDarkPalette(mediaQuery.matches));
+    // Načtení uložené volby z Local Storage
+    const savedTheme = localStorage.getItem('dark-mode');
+    console.log('Načtená hodnota z Local Storage:', savedTheme);
+
+    // Nastavení přepínače podle uložené hodnoty
+    this.paletteToggle = savedTheme === 'true';
+
+    // Aplikace režimu
+    this.toggleDarkPalette(this.paletteToggle);
   }
-  // Check/uncheck the toggle and update the palette based on isDark
-  initializeDarkPalette(isDark: boolean) {
-    this.paletteToggle = isDark;
-    this.toggleDarkPalette(isDark);
-  }
-  // Listen for the toggle check/uncheck to toggle the dark palette
+
+  // Uložení volby při změně přepínače
   toggleChange(ev: any) {
-    this.toggleDarkPalette(ev.detail.checked);
+    this.paletteToggle = ev.detail.checked;
+    console.log('Přepínač změněn na:', this.paletteToggle);
+
+    // Uložení hodnoty do Local Storage
+    localStorage.setItem('dark-mode', this.paletteToggle.toString());
+    console.log('Uloženo do Local Storage:', localStorage.getItem('dark-mode'));
+
+    // Přepnutí režimu
+    this.toggleDarkPalette(this.paletteToggle);
   }
-  // Add or remove the "ion-palette-dark" class on the html element
+
+  // Přepínání tmavého/světlého režimu
   toggleDarkPalette(shouldAdd: boolean) {
     document.documentElement.classList.toggle('ion-palette-dark', shouldAdd);
   }
-
 }
